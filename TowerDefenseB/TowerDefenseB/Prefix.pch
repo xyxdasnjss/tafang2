@@ -1,0 +1,83 @@
+//
+// Prefix header for all source files of the 'Test' target in the 'Test' project
+//
+
+#import <Availability.h>
+
+#ifndef __IPHONE_3_0
+#warning "This project uses features only available in iPhone SDK 3.0 and later."
+#endif
+
+#ifdef __OBJC__
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import "cocos2d.h"
+#import "GameConfig.h"
+#import "Flurry.h"
+
+
+
+#define WINSCALE ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] == YES && [[UIScreen mainScreen] scale] == 2.0f)
+
+#endif
+
+//各个层 触摸 优先级
+#define kPriorityGameReady      -10
+#define kPriorityGameOver       -10
+#define kPriorityGamePause      -10
+#define kPriorityGameMenuBg     -9
+#define kPriorityAddTower       -8
+#define kPriorityTowerMenu      -7
+#define kPriorityGame           -6
+
+      
+// 为每一个CPU架构指定最佳的粒子系统
+#ifdef __ARM_NEON__
+// armv7
+#define ARCH_OPTIMAL_PARTICLE_SYSTEM CCQuadParticleSystem
+#elif __arm__ || TARGET_IPHONE_SIMULATOR
+// armv6 或者模拟器
+#define ARCH_OPTIMAL_PARTICLE_SYSTEM CCPointParticleSystem
+#else
+    #error(unknown architecture)
+#endif
+
+
+#define MyAppleID @""
+
+#define kPushChannel    @"Debug"
+
+
+#define kParseApplicationId @"BcpKmnlRPIiOZojiIdmccQZrQqJRlEwaHoHY3N8s"
+#define kParseClientKey     @"WS1NJvx2DLPvQUbgxAV6ltsPCDnJ5ZWfSqZsAsSM"
+#define kParseJavascript    @"jTzjIRWZBSnRfzFYovT83Ua90HpjfyPcvvJp4tVa"
+#define kParseREST          @"eZQCIep2f9coshZ24pKQ9yZRWxlkmXIuUMLZZrAP"
+#define kParseMaster        @"kkZOAehHbVDY367R7xJqnQRQQ5z8sXwyEgLsT1HB"
+
+#define kFlurryAppKey       @"8B7KGG3Q33Z47SXGN8FC"
+
+
+//目的是 屏蔽 release 版本的 nslog
+#ifndef __OPTIMIZE__
+
+#define NSLog(...) NSLog(__VA_ARGS__)
+
+#else
+
+#define NSLog(...) {}
+
+#endif
+
+
+// DLog is almost a drop-in replacement for NSLog
+// DLog();
+// DLog(@"here");
+// DLog(@"value: %d", x);
+// Unfortunately this doesn't work DLog(aStringVariable); you have to do this instead DLog(@"%@", aStringVariable);
+#ifdef DEBUG
+#   define DLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
+#else
+#   define DLog(...)
+#endif
+// ALog always displays output regardless of the DEBUG setting
+#define ALog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);

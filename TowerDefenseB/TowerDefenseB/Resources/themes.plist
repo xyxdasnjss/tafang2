@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Theme1</key>
+	<string>Themes/Theme1</string>
+	<key>Theme2</key>
+	<string>Themes/Theme2</string>
+	<key>Theme3</key>
+	<string>Themes/Theme3</string>
+	<key>Theme5</key>
+	<string>Themes/Theme5</string>
+</dict>
+</plist>
